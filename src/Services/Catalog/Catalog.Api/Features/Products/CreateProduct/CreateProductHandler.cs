@@ -10,15 +10,9 @@ namespace Catalog.Api.Features.Products.CreateProduct
     {
         public Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = request.Name,
-                Description = request.Description,
-                Price = request.Price,
-                Category = request.Category,
-                ImageFile = request.ImageFile
-            };
+
+            var product = request.Adapt<Product>();
+           
 
             // Logic to create a product
             var productId = Guid.NewGuid(); // Simulate product creation
